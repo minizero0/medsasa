@@ -126,9 +126,9 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 STATIC_URL = '/static/'
 
-THEME_ROOT = os.path.join(BASE_DIR, 'theme')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-THEME_URL = '/theme/'
+MEDIA_URL = '/media/'
 
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)

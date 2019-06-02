@@ -34,4 +34,4 @@ urlpatterns = [
     path('theme/<int:theme_id>/commentremove/<int:pk>/', theme.views.commentremove, name="commentremove"),
     path('theme/hashtag/', theme.views.hashtagform, name='hashtag'),
     path('theme/<int:hashtag_id>/search/', theme.views.search, name="search"),
-]+ static(settings.THEME_URL, document_root=settings.THEME_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
