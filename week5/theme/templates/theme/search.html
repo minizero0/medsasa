@@ -1,0 +1,22 @@
+{% extends 'theme/main.html' %}
+
+
+{% block news %}
+<header>
+        <div class="site-heading">
+                <h1>{{ hashtag }}가 있는 게시글 목록</h1>
+                <span class="subheading">해시태그 검색결과 페이지 입니다.</span>
+        </div>
+</header>
+{% for theme in theme_set.all %}
+    <div class = "card" style = "width: 18rem; margin:auto;" >
+        <div class = "card-body" style ="background-color: #212529; color:aliceblue;">
+    <h1 class="card-title "><a href="{% url 'detail' theme.id %}">{{theme.title}}</a></h1>
+    <p class="card-subtitle mb-2 text-muted ">{{theme.pub_date }}</p>
+    <p class="card-text">{{theme.body}} </p>
+    <a class="card-link"  href="{% url 'edit' theme.id %}">수정</a>
+    <a class="card-link"  href="{% url 'remove' theme.id %}">삭제</a>
+    </div>
+    </div>
+    {% endfor %}
+{% endblock %}

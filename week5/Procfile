@@ -1,0 +1,1 @@
+web: gunicorn week5.wsgi --log-file -

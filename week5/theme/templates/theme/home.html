@@ -1,0 +1,33 @@
+{% extends 'theme/main.html' %}
+
+
+{% block news %}
+<div class = "container">
+<div class="dropdown">
+        <button class="btn btn-primary float-row dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hashtag 검색
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          {% for hashtag in hashtags.all %}
+          <a class="dropdown-item" href="{% url 'search' hashtag.id %}">{{ hashtag.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <br>
+
+    {% for theme in theme.all %}
+      <div class = "card" style = "width: 18rem; margin:auto;" >
+      {% if theme.image %}
+        <img class="card-img-top" src= "{{ theme.image.url }}" alt ="Card img cap">
+      {% endif %}
+      <div class = "card-body" style ="background-color: #212529; color:aliceblue;">
+      <h1 class="card-title "><a href="{% url 'detail' theme.id %}">{{theme.title}}</a></h1>
+      <p class="card-subtitle mb-2 text-muted ">{{theme.published_at }}</p>
+      <p class="card-text">{{theme.body}} </p>
+      <a class="card-link"  href="{% url 'edit' theme.id %}">수정</a>
+      <a class="card-link"  href="{% url 'remove' theme.id %}">삭제</a>
+      </div>
+      </div>
+    {% endfor %}
+</div>
+{% endblock %}

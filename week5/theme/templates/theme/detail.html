@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block news %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">{{ theme.title }}</h1>
+            <p class="lead">{{ theme.body }}</p>
+            <hr class="my-4">
+            <p>수정 날짜: {{ theme.published_at }}</p>
+            {% for hashtag in theme.hashtags.all %}
+                <span>{{ hashtag.name }}</span>
+            {% endfor %}
+            <br>
+            <a class="btn btn-secondary" href="{% url 'edit' theme.id %}" role="button">수정</a>
+            <a class="btn btn-danger" href="{% url 'remove' theme.id %}" role="button">삭제</a>
+        </div>
+        {% for comment in theme.comments.all %}
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">{{ comment.comment_text }}</h1>
+                    <a class="btn btn-secondary" href="{% url 'commentedit' theme.id comment.id %}" role="button">댓글수정</a>
+                    <a class="btn btn-secondary" href="{% url 'commentremove' theme.id comment.id %}" role="button">댓글삭제</a>
+                </div>
+            </div>
+        {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
